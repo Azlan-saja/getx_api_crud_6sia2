@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_api_crud_6sia2/controllers/user_controller.dart';
+import 'user_add_page.dart';
+import 'user_edit_page.dart';
 
 class UserListPage extends StatelessWidget {
   UserListPage({super.key});
@@ -14,7 +16,9 @@ class UserListPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
-        onPressed: () {},
+        onPressed: () {
+          Get.to(() => UserAddPage());
+        },
         child: Icon(Icons.add),
       ),
       body: Obx(() {
@@ -35,7 +39,9 @@ class UserListPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
-                      onPressed: null,
+                      onPressed: () {
+                        Get.to(() => UserEditPage(user: user));
+                      },
                       icon: Icon(Icons.edit, color: Colors.blue),
                     ),
                     IconButton(
@@ -46,10 +52,7 @@ class UserListPage extends StatelessWidget {
                             title: Text('Info Hapus,'),
                             content: Text('Yakin hapus data ${user.name}?'),
                             actions: [
-                              TextButton(
-                                onPressed: () => Get.back(),
-                                child: Text('Batal'),
-                              ),
+                              TextButton(onPressed: () => Get.back(), child: Text('Batal')),
                               ElevatedButton(
                                 onPressed: () {
                                   userC.deleteUser(user.id);
