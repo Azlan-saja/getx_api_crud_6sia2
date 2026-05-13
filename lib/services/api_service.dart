@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:getx_api_crud_6sia2/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,7 +12,7 @@ class ApiService {
       headers: {'Accept': 'application/json'},
     );
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
+      final List data = jsonDecode(response.body);
       // Masukkan Data Kedalam Model User
       return data.map((user) => UserModel.fromJson(user)).toList();
     }
